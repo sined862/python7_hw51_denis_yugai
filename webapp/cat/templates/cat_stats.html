@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat stats</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="row">
+                <div class="cell"><img src="{% static img %}" alt="cat"></div>
+                <div class="cell">
+                    <p>Имя кота/кошки - <strong>{{ name }}</strong></p>
+                    <p>Возраст кота - <strong>{{ age }}</strong></p>
+                    <p>Уровень счастья - <strong>{{ happiness }}</strong></p>
+                    <p>Уровень сытости - <strong>{{ satiety }}</strong></p>
+                    {% if state == 'sleep'%}
+                    <p><strong>{{ name }} спит</strong></p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% if state == 'awake'%}
+                    <select class="input" name="action" id="action">
+                        <option>Выберете действие</option>
+                        <option>.................</option>
+                        <option value="1">Играть</option>
+                        <option value="2">Кормить</option>
+                        <option value="3">Уложить спать</option>
+                    </select><br> 
+                    {% else %}
+                    <select class="input" name="action" id="action">
+                        <option>Выберете действие</option>
+                        <option>.................</option>
+                        <option value="1">Играть</option>
+                    </select><br>  
+                    {% endif %} 
+                    <input class="btn" type="submit" value="Подтвердить"> 
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
